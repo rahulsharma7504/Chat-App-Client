@@ -1,0 +1,85 @@
+.drawer {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -250px;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  position: fixed;
+}
+
+.drawer a {
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.drawer a:hover {
+  color: #f1f1f1;
+}
+
+.drawer .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.main-content {
+  margin-left: 10px;
+  padding: 16px;
+  transition: margin-left 0.3s;
+}
+
+.main-content.shift {
+  margin-left: 260px;
+}
+
+.drawer.open {
+  left: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.user-image {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.user-info h4 {
+  color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) {
+  .drawer {
+    padding-top: 15px;
+  }
+  .drawer a {
+    font-size: 18px;
+  }
+}
