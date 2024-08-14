@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from './Pages/Footer';
 import '../Styles/header.css';
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 
@@ -80,6 +80,8 @@ const register=()=>{
                   </>
                 )
               }
+              <hr />
+              <NavLink to='/groups' >Groups</NavLink>
 
             </div>
 

@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       setUser({ isAuthenticated: true });
+      if(window.location.pathname==='/login' || window.location.pathname==='/register')
       navigate('/dashboard');
     }
   }, [navigate]); // Add navigate to the dependency array
@@ -26,6 +27,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = () =>  useContext(AuthContext);

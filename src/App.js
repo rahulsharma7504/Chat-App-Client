@@ -8,6 +8,7 @@ import Login from './components/Pages/Login';
 import { AuthProvider, useAuth } from './Context/context';
 import Home from './components/Pages/Home';
 import Tabspanel from './components/Pages/Tabs';
+import Group from './components/Group/Group';
 const App = () => {
   return (
     <Router>
@@ -31,6 +32,7 @@ const AppContent = () => {
       {/* <Route path="/" element={<Tabspanel />} /> */}
       <Route path="/dashboard" element={user.isAuthenticated ? <Tabspanel /> : <Navigate to="/login" />} />
       <Route path="/forget" element={user.isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+      <Route path="/groups" element={user.isAuthenticated ? <Group /> : <Navigate to="/login" />} />
       <Route path="*" element={<Navigate to={user.isAuthenticated ? "/dashboard" : "/login"} />} />
     </Routes>
   );
