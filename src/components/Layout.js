@@ -32,11 +32,11 @@ const Layout = ({ children }) => {
   const closeDrawer = () => {
     setDrawerOpen(false);
   };
-const register=()=>{
-  navigate('/register')
+  const register = () => {
+    navigate('/register')
 
-}
-  const login= ()=>{
+  }
+  const login = () => {
     navigate('/login')
   }
   return (
@@ -44,22 +44,22 @@ const register=()=>{
       <header>
         <div>
           <div id="myDrawer" className={`drawer ${drawerOpen ? 'open' : ''}`}>
-            <a href="javascript:void(0)" style={{fontSize:'25px'}} className="closebtn" onClick={closeDrawer}> <i  class="fa fa-times"></i> Close</a>
+            <a href="javascript:void(0)" style={{ fontSize: '25px' }} className="closebtn" onClick={closeDrawer}> <i class="fa fa-times"></i> Close</a>
             <div className="user-info">
               {
-                ! userData && (
+                !userData && (
                   <>
-                   <a style={{color:"white", cursor:'pointer'}} onClick={register} >
-                <i className="fas fa-user"></i> Register</a>
+                    <a style={{ color: "white", cursor: 'pointer' }} onClick={register} >
+                      <i className="fas fa-user"></i> Register</a>
 
-              <hr />
-              <a  onClick={login} style={{color:"white", cursor:'pointer'}}>
+                    <hr />
+                    <a onClick={login} style={{ color: "white", cursor: 'pointer' }}>
 
-                <i className="fas fa-user-circle"></i> Login</a>
+                      <i className="fas fa-user-circle"></i> Login</a>
                   </>
-                ) 
+                )
               }
-             
+
               {
                 userData && (
                   <div>
@@ -75,13 +75,13 @@ const register=()=>{
                     <img src={userData.image} alt={userData.name} className="user-image" />
                     <h4>{userData.name}</h4>
                     <hr />
-                    <a style={{color:'white', cursor:'pointer'}}><i class="fa fa-home" style={{color:'white'}}></i> Dashboard</a>
+                    <NavLink to='/dashboard' style={{ color: 'white', cursor: 'pointer' }}><i class="fa fa-home" style={{ color: 'white' }}></i> Dashboard</NavLink>
 
                   </>
                 )
               }
               <hr />
-              <NavLink to='/groups' >Groups</NavLink>
+              <NavLink to='/groups' > <i className='fa fa-group'></i> Groups</NavLink>
 
             </div>
 

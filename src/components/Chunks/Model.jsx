@@ -57,6 +57,9 @@ function CreateGroupModal({update}) {
             console.log(res.data);
     
             // Handle response
+            if (res.data?.success && update) {
+                update();
+            }
             Swal.fire({
                 title: res.data?.message,
                 icon: res.data?.success ? 'success' : 'error',

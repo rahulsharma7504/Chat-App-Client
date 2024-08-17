@@ -47,7 +47,7 @@ const Register = () => {
         password: '',
         image: '',
       });
-      setErrors([]);
+      setErrors([]);  
     } catch (error) {
       if (error.response && error.response.data.errors) {
         toast.error(error.response.data.errors[0].msg);

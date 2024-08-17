@@ -1,10 +1,22 @@
-import React from 'react'
+import { MotionConfigContext } from 'framer-motion'
+import React, { useEffect, useState } from 'react'
+import Model from '../Chunks/Model';
+import Table from './Table';
 
 const Group = () => {
+    
   return (
     <>
-    <h3>Group Compo</h3>
-      
+    <div className="container-fliud">
+        {/* <div className="row">
+            <div className="col-md-3">
+                <Model />
+            </div>
+        </div> */}
+        <div className="row">
+            <Table/>
+        </div>
+    </div>
     </>
   )
 }
