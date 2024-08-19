@@ -4,10 +4,10 @@ import URL from '../Chunks/URL';
 import Swal from 'sweetalert2';
 import moment from 'moment/moment';
 import Model from '../Chunks/Model'
-import { Icon, Box } from "@chakra-ui/react";
+import { Icon, Box, Toast } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa";
 import TableModel from './TableModel'
-
+import EditModel from '../Chunks/EditModel'
 import {
     Button,
     Image,
@@ -28,6 +28,7 @@ import {
     Checkbox,
     useDisclosure,
 } from "@chakra-ui/react";
+import { toast } from 'react-toastify';
 
 const MyTable = ({ update }) => {
     const [groupsData, setGroupsData] = useState([]);
@@ -46,6 +47,29 @@ const MyTable = ({ update }) => {
         const response = await axios.get(`${URL.Endpoint}/group/getUsers/${id}`);
         setGroupsData(response.data);
     }
+
+    const DeleteGroup = async (id) => {
+        const res = await axios.delete(`${URL.Endpoint}/group/delete/${id}`);
+        if (res.data.success) {
+            Toast.success(res.data.message);
+            fetchGroups();
+        } else {
+            Toast.error(res.data.message);
+        }
+    }
+
+    const copylink=(id)=>{
+        try {
+            navigator.clipboard.writeText(`${window.location.href}/${id}`);
+            toast.success("Link Copied Successfully");
+            
+        } catch (error) {
+            toast.error(error.response.data.message);
+            
+        }
+    }
+
+
     return (
         // Display a loading message while waiting for the data
         <>
@@ -78,11 +102,16 @@ const MyTable = ({ update }) => {
                                         <TableModel groupsData={groupsData} groupId={item._id} />
                                     </Td>
                                     <Td>
-                                        <Button colorScheme="blue" size="sm" mr={2}>
-                                            Edit
+                                        <Button colorScheme="white" size="sm">
+                                        <EditModel data={{ name: item.name, limit: item.limit,id:item._id }} update={fetchGroups} />
+
                                         </Button>
-                                        <Button colorScheme="red" size="sm">
+                                        <Button onClick={()=>DeleteGroup(item._id)} colorScheme="red" size="sm">
                                             Delete
+                                        </Button>
+                                        <Button onClick={()=>copylink(item._id)} colorScheme="blue" style={{margin:'0px 4px'}} size="sm">
+                                            <i className='fa fa-copy' size='lg'></i>
+                                            Copy
                                         </Button>
                                     </Td>
                                 </Tr>

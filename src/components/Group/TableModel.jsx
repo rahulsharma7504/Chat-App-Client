@@ -52,14 +52,23 @@ const TableModel = ({ groupId }) => {
     }
 
     const handleSubmit = async () => {
-        // Send selected users and groupId to the server
-       const res= await axios.post(`${URL.Endpoint}/group/addUsers`, {
-            groupId: groupId,
-            users: users,
-        });
-        toast.success(res.data.message);
+        try {
+            const res= await axios.post(`${URL.Endpoint}/group/addUsers`, {
+                groupId: groupId,
+                users: users,
+            });
+            toast.success(res.data.message);
+    
+            onClose();
+            
+        } catch (error) {
+            console.error('Error updating message:', error);
+            toast.error(error.response.data.message     );
 
-        onClose();
+            
+        }
+        // Send selected users and groupId to the server
+      
     };
 
     
