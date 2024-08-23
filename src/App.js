@@ -8,9 +8,8 @@ import Login from './components/Pages/Login';
 import { AuthProvider, useAuth } from './Context/context';
 import Home from './components/Pages/Home';
 import Tabspanel from './components/Pages/Tabs';
-import Group from './components/Group/Group';
+import Table from './components/Group/Table';
 import JoinLink from './components/Group/JoinLink';
-
 const App = () => {
   return (
     <Router>
@@ -19,7 +18,7 @@ const App = () => {
         <Layout>
           <AppContent />
         </Layout>
-      </AuthProvider>
+      </AuthProvider> 
     </Router>
   );
 };
@@ -31,11 +30,10 @@ const AppContent = () => {
     <Routes>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      {/* <Route path="/" element={<Tabspanel />} /> */}  
       <Route path="/dashboard" element={user.isAuthenticated ? <Tabspanel /> : <Navigate to="/login" />} />
       <Route path="/forget" element={user.isAuthenticated ? <Home /> : <Navigate to="/login" />} />
-      <Route path="/groups" element={user.isAuthenticated ? <Group /> : <Navigate to="/login" />} />
-      <Route path="/groups/:id" element={user.isAuthenticated ? <JoinLink /> : <Navigate to="/login" />} />
+      <Route path="/groups" element={user.isAuthenticated ? <Table /> : <Navigate to="/login" />} />
+      <Route path="/groups/:id" element={<JoinLink /> } />
       {/* <Route path="*" element={<Navigate to={user.isAuthenticated ? "/dashboard" : "/login"} />} /> */}
     </Routes>
   );

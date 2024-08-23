@@ -177,7 +177,7 @@ const Home = () => {
     <>
       <div>
       </div>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-md-4 col-12">
             {usersData.length > 0 ? (
