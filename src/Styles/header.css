@@ -1,28 +1,17 @@
 .drawer {
-  height: 100%;
-  width: 250px;
   position: fixed;
-  z-index: 1;
-  top: 0;
-  left: -250px;
-  background-color: #111;
+  top: 60px; /* Adjust based on navbar height */
+  left: -250px; /* Hidden by default */
+  width: 250px;
+  height: 100%;
+  background-color: #333;
   overflow-x: hidden;
   transition: 0.3s;
-  padding-top: 60px;
-  position: fixed;
+  z-index: 999; /* Ensures sidebar stays below navbar */
 }
 
-.drawer a {
-  padding: 10px 15px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.drawer a:hover {
-  color: #f1f1f1;
+.drawer.open {
+  left: 0; /* Slide in from the left when open */
 }
 
 .drawer .closebtn {
@@ -32,14 +21,29 @@
   font-size: 36px;
   margin-left: 50px;
 }
+.drawer a:hover {
+  color: #f1f1f1;
+}
+.drawer {
+  color: #f10707;
+}
 
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
+
+.drawer .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.main-content {
+  transition: margin-left 0.3s;
+  margin-left: 0; /* Default margin when sidebar is closed */
+}
+
+.main-content.shift {
+  margin-left: 250px; /* Shift content when sidebar is open */
 }
 
 .main-content {
@@ -49,37 +53,6 @@
 }
 
 .main-content.shift {
-  margin-left: 260px;
+  margin-left: 260px; /* Shift to accommodate the open drawer */
 }
 
-.drawer.open {
-  left: 0;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-}
-
-.user-image {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-.user-info h4 {
-  color: #f1f1f1;
-}
-
-@media screen and (max-height: 450px) {
-  .drawer {
-    padding-top: 15px;
-  }
-  .drawer a {
-    font-size: 18px;
-  }
-}

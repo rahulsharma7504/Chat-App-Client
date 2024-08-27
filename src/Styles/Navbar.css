@@ -1,0 +1,91 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000; /* Ensures navbar stays on top */
+  top: 0;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-logo {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-toggle {
+  display: none; /* Hide by default */
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between the nav links */
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar-link:hover {
+  color: #ddd;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the image and name */
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none; /* Hide links on smaller screens */
+  }
+
+  .navbar-toggle {
+    display: block; /* Show the toggle icon on smaller screens */
+    cursor: pointer;
+  }
+}
+
+/* Styles when the navbar toggle is clicked for mobile */
+.navbar-toggle.active + .navbar-links {
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  position: absolute;
+  top: 60px; /* Adjust based on navbar height */
+  right: 0;
+  width: 100%;
+  padding: 10px 0;
+}
