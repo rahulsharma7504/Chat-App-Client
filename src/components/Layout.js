@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Footer from './Pages/Footer';
 import '../Styles/header.css';
 import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
 const Layout = ({ children }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -13,28 +14,11 @@ const Layout = ({ children }) => {
   return (
     <>
       {/* Pass toggleDrawer function to Navbar component */}
-      <Navbar toggleDrawer={toggleDrawer} />
 
       <header>
-        <div>
-          {/* Sidebar Drawer */}
-          <div id="myDrawer" className={`drawer ${drawerOpen ? 'open' : ''}`}>
-            <a
-              href="#"
-              style={{ fontSize: '25px' }}
-              className="closebtn"
-              onClick={toggleDrawer}
-            >
-              <i className="fa fa-times"></i> Close
-            </a>
-            {/* Additional sidebar content can go here */}
-          </div>
+      <Navbar toggleDrawer={toggleDrawer} />
 
-          {/* Main Content Shift with Sidebar */}
-          <div className={`main-content ${drawerOpen ? 'shift' : ''}`}>
-            {/* Main Content Here */}
-          </div>
-        </div>
+       <Sidebar drawerOpen={drawerOpen}/>
       </header>
 
       <main>{children}</main>
