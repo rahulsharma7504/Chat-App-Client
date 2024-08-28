@@ -1,262 +1,291 @@
 .userList {
-    list-style-type: none;
-    padding: 0;
-    width: 233px;
+  list-style-type: none;
+  padding: 0;
+  width: 233px;
 }
-body{
-    background-color: #2d9e9e;
+
+body {
+  background-color: #2d9e9e;
 }
+
 .inlineContent {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .inlineContent i {
-    margin-right: 8px;
-    margin-left: 10px;
-    font-size: larger;
-    /* space between icon and text */
+  margin-right: 8px;
+  margin-left: 10px;
+  font-size: larger;
+  /* space between icon and text */
 }
 
 .verticalLine {
-    width: 11px;
-    /* width of the line */
-    height: 100px;
-    /* height of the line */
-    background-color: black;
-    /* color of the line */
-    border: none;
-    /* remove the default border */
-    margin: 0;
-    /* optional: to remove default margins */
+  width: 11px;
+  /* width of the line */
+  height: 100px;
+  /* height of the line */
+  background-color: black;
+  /* color of the line */
+  border: none;
+  /* remove the default border */
+  margin: 0;
+  /* optional: to remove default margins */
 }
 
 .userItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .userInfo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .userImage {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .userDetails {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .userName {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .userStatus {
-    font-size: 0.9em;
-    color: rgb(255, 92, 17);
+  font-size: 0.9em;
+  color: rgb(255, 92, 17);
 }
 
 .chatButton {
-    background-color: #174247;
-    /* WhatsApp green color */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #174247;
+  /* WhatsApp green color */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* For The Chat Box */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #5ea2cf;
+  font-family: Arial, sans-serif;
+  background-color: #5ea2cf;
 }
+
 .chatContainer {
-    width: 100%;
-    max-width: 800px;
-    height: 500px;
-    background-color: white;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    /* background-image: url('../components/Images/background.jpg'); */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* background-image: url('../components/Images/background.jpg'); */
 
-  }
-  .chatBody {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    background-color: #ece5dd;
-    border-bottom: 1px solid #ccc;
-  }
+}
 
-.chatHeader, .chatFooter {
-    padding: 20px;
-    background-color: #075e54;
-    color: white;
-    border-bottom: 1px solid #ccc;
+
+.chatBody {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #ece5dd;
+  border-bottom: 1px solid #ccc;
+}
+
+.chatHeader,
+.chatFooter {
+  padding: 20px;
+  background-color: #075e54;
+  color: white;
+  border-bottom: 1px solid #ccc;
 }
 
 .chatHeader {
-    display: flex;
-    justify-content: space-between; /* Ensures the video icon is on the right */
-    align-items: center;
-    padding: 20px;
-    background-color: #075e54;
-    color: white;
-    border-bottom: 2px solid #eee;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  /* Ensures the video icon is on the right */
+  align-items: center;
+  padding: 20px;
+  background-color: #075e54;
+  color: white;
+  border-bottom: 2px solid #eee;
+}
 
-  .senderMessage, .receiverMessage {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    
-  }
-  
-  .senderMessage .messageContent, .receiverMessage .messageContent {
-    max-width: 70%;
-    padding: 10px;
-    border-radius: 10px;
-    position: relative;
-  }
-  
-  .senderMessage .messageContent {
-    background-color: #dcf8c6;
-    margin-left: auto;
-  }
-  
-  .receiverMessage .messageContent {
-    background-color: #fff;
-    margin-right: auto;
-  }
-  
-  .messageContent img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .messageContent p {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .messageContent small {
-    display: block;
-    text-align: right;
-    color: gray;
-    font-size: 0.8em;
-    margin-top: 5px;
-  }
-  
-  
-  .messageContent::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .senderMessage .messageContent::after {
-    right: -10px;
-    border-left: 10px solid #dcf8c6;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-  }
-  
-  .receiverMessage .messageContent::after {
-    left: -10px;
-    border-right: 10px solid #fff;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-  }
-  
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.senderMessage,
+.receiverMessage {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+
+}
+
+.senderMessage .messageContent,
+.receiverMessage .messageContent {
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.senderMessage .messageContent {
+  background-color: #dcf8c6;
+  margin-left: auto;
+}
+
+.receiverMessage .messageContent {
+  background-color: #fff;
+  margin-right: auto;
+}
+
+.messageContent img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.messageContent p {
+  margin: 0;
+  padding: 0;
+}
+
+.messageContent small {
+  display: block;
+  text-align: right;
+  color: gray;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+
+.messageContent::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+}
+
+.senderMessage .messageContent::after {
+  right: -10px;
+  border-left: 10px solid #dcf8c6;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.receiverMessage .messageContent::after {
+  left: -10px;
+  border-right: 10px solid #fff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
 
 .messageInputContainer {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #ffffff;
-    border-top: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
 }
 
 .userInfo {
-    margin-left: 10px; /* Add some space between image and user info */
-  }
-  .videoCallIcon {
-    font-size: 24px;
-    cursor: pointer;
-  }
+  margin-left: 10px;
+  /* Add some space between image and user info */
+}
+
+.videoCallIcon {
+  font-size: 24px;
+  cursor: pointer;
+}
 
 .messageInputContainer input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    margin-right: 10px;
-    font-size: 16px;
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-size: 16px;
 }
 
-.messageInputContainer button, .messageInputContainer .fileIcon {
-    background-color: #075e54;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.messageInputContainer button,
+.messageInputContainer .fileIcon {
+  background-color: #075e54;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.messageInputContainer button:hover, .messageInputContainer .fileIcon:hover {
-    background-color: #054d44;
+.messageInputContainer button:hover,
+.messageInputContainer .fileIcon:hover {
+  background-color: #054d44;
 }
 
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
-    .chatContainer {
-        height: 100vh; /* Full height for mobile screens */
-        border-radius: 0; /* Remove border radius for mobile */
-        box-shadow: none; /* Remove box shadow for mobile */
-    }
+  .chatContainer {
+    height: 100vh;
+    /* Full height for mobile screens */
+    border-radius: 0;
+    /* Remove border radius for mobile */
+    box-shadow: none;
+    /* Remove box shadow for mobile */
+  }
 
-    .chatHeader, .chatFooter {
-        padding: 10px; /* Reduce padding for mobile */
-    }
+  .chatHeader,
+  .chatFooter {
+    padding: 10px;
+    /* Reduce padding for mobile */
+  }
 
-    .chatBody {
-        padding: 10px; /* Reduce padding for mobile */
-    }
+  .chatBody {
+    padding: 10px;
+    /* Reduce padding for mobile */
+  }
 
-    .messageInputContainer input[type="text"] {
-        padding: 8px; /* Reduce padding for mobile */
-        margin-right: 5px; /* Reduce margin for mobile */
-        font-size: 14px; /* Reduce font size for mobile */
-    }
+  .messageInputContainer input[type="text"] {
+    padding: 8px;
+    /* Reduce padding for mobile */
+    margin-right: 5px;
+    /* Reduce margin for mobile */
+    font-size: 14px;
+    /* Reduce font size for mobile */
+  }
 
-    .messageInputContainer button, .messageInputContainer .fileIcon {
-        padding: 8px; /* Reduce padding for mobile */
-        margin-left: 3px; /* Reduce margin for mobile */
-    }
+  .messageInputContainer button,
+  .messageInputContainer .fileIcon {
+    padding: 8px;
+    /* Reduce padding for mobile */
+    margin-left: 3px;
+    /* Reduce margin for mobile */
+  }
 }

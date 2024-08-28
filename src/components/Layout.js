@@ -15,17 +15,17 @@ const Layout = ({ children }) => {
     <>
       {/* Pass toggleDrawer function to Navbar component */}
 
-      <header>
+      <header style={{marginBottom:'35px'}}>
       <Navbar toggleDrawer={toggleDrawer} />
 
        <Sidebar drawerOpen={drawerOpen}/>
       </header>
 
-      <main>{children}</main>
+      <main >{children}</main>
 
       <footer>
         {/* Footer component */}
-        <Footer />
+        {/* <Footer /> */}
       </footer>
     </>
   );
