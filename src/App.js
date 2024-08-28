@@ -10,7 +10,6 @@ import Home from './components/Pages/Home';
 import Tabspanel from './components/Pages/Tabs';
 import Table from './components/Group/Table';
 import JoinLink from './components/Group/JoinLink';
-import Chat from './components/Pages/Chat';
 const App = () => {
   return (
     <Router>
@@ -32,7 +31,6 @@ const AppContent = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={user.isAuthenticated ? <Tabspanel /> : <Navigate to="/login" />} />
-      <Route path="/chat/:id" element={user.isAuthenticated ?<Chat /> : <Navigate to='/login'/>} />
       <Route path="/forget" element={user.isAuthenticated ? <Home /> : <Navigate to="/login" />} />
       <Route path="/groups" element={user.isAuthenticated ? <Table /> : <Navigate to="/login" />} />
       <Route path="/groups/:id" element={<JoinLink /> } />

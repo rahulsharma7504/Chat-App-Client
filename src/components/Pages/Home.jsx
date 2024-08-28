@@ -4,16 +4,12 @@ import { io } from 'socket.io-client';
 import styles from '../../Styles/Home.module.css';
 import Swal from 'sweetalert2';
 import moment from 'moment';
-import {useNavigate,NavLink} from 'react-router-dom'
 
 const ENDPOINT = "http://localhost:4000";
 const API_USERS_URL = `${ENDPOINT}/api/users`;
 const API_USER_INFO_URL = `${ENDPOINT}/api/user/info`;
 
 const Home = () => {
-const navigate = useNavigate();
-
-
   const containerRef = useRef(null);
   const [usersData, setUsersData] = useState([]);
   const [chatUser, setChatUser] = useState(null);
@@ -22,29 +18,6 @@ const navigate = useNavigate();
   const [chatMessage, setChatMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [oldMessages, setOldMessages] = useState([]);
-
-
-// For User Redirect if Mobile Screen 
-const isMobile = window.innerWidth <= 768;
-
-const getUserInfo = async (id) => {
-  try {
-    const res = await axios.post(API_USER_INFO_URL, { id });
-    setChatUser(res.data);
-    setMessages([]); // Reset messages when changing chat user
-
-    if (isMobile) {
-      navigate(`/chat/${id}`); // Redirect to mobile chat page
-    }
-  } catch (error) {
-    Swal.fire({
-      title: 'Oops! Something went wrong',
-      icon: 'warning',
-      confirmButtonText: 'Okay',
-    });
-    console.error('Error fetching user info:', error);
-  }
-};
 
   var socketInstance = null;
 
@@ -67,7 +40,7 @@ const getUserInfo = async (id) => {
       socketInstance.on('receiveMessage', (msg) => {
         setMessages(prev => [...prev, { sender: 'receiver', content: msg.message, timestamp: new Date() }]);
       }); 
-      
+
       setSocket(socketInstance);
 
       return () => {
@@ -168,34 +141,34 @@ const getUserInfo = async (id) => {
     }
   };
 
-  // const getUserInfo = async (id) => {
-  //   try {
-  //     const res = await axios.post(API_USER_INFO_URL, { id });
-  //     setChatUser(res.data);
-  //     setMessages([]);  // Reset messages when changing chat user
-  //   } catch (error) {
-  //     Swal.fire({
-  //       title: 'Oops! Something went wrong',
-  //       icon: 'warning',
-  //       confirmButtonText: 'Okay'
-  //     })
-  //     console.error('Error fetching user info:', error);
-  //   }
-  // };
+  const getUserInfo = async (id) => {
+    try {
+      const res = await axios.post(API_USER_INFO_URL, { id });
+      setChatUser(res.data);
+      setMessages([]);  // Reset messages when changing chat user
+    } catch (error) {
+      Swal.fire({
+        title: 'Oops! Something went wrong',
+        icon: 'warning',
+        confirmButtonText: 'Okay'
+      })
+      console.error('Error fetching user info:', error);
+    }
+  };
 
   // Ensure the chat container scrolls to the bottom when messages or oldMessages change
-  // useEffect(() => {
-  //   if (containerRef.current) {
-  //     containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
-  //   }
-  // }, [messages, oldMessages]);
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
+    }
+  }, [messages, oldMessages]);
 
-  // // Ensure the chat container scrolls to the bottom when a new chat user is selected
-  // useEffect(() => {
-  //   if (containerRef.current) {
-  //     containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
-  //   }
-  // }, [chatUser]);
+  // Ensure the chat container scrolls to the bottom when a new chat user is selected
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
+    }
+  }, [chatUser]);
 
   // Logout functionality
 
@@ -216,15 +189,13 @@ const getUserInfo = async (id) => {
                   <hr className={styles.verticalLine} />
                   {usersData.map((user) => (
                     <li key={user._id} className={styles.userItem}>
-                      <NavLink to={`/chat/${user._id}`} className={styles.userInfo} onClick={() => getUserInfo(user._id)}>
-                      <div className={styles.userInfo}>
+                      <div className={styles.userInfo} onClick={() => getUserInfo(user._id)}>
                         <img src={user.image} alt={user.name} className={styles.userImage} />
                         <div className={styles.userDetails}>
                           <span className={styles.userName}>{user.name}</span>
                           <span className={styles.userStatus}>{user.is_online ? 'Online' : ''}</span>
                         </div>
                       </div>
-                      </NavLink>
                     </li>
                   ))}
                 </ul>
