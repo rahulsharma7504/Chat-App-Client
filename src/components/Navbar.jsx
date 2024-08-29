@@ -4,6 +4,8 @@ import '../Styles/Navbar.css'
 import { toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
 
+import Model from './Chunks/Model' 
+
 const Navbar = ({ toggleDrawer }) => {
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
@@ -51,6 +53,7 @@ const Navbar = ({ toggleDrawer }) => {
                 {
                     userData && (
                         <>
+                        
                             <NavLink to='/dashboard' className="navbar-link">
                                 <i className="fa fa-home" style={{ color: 'white' }}></i> Dashboard
                             </NavLink>

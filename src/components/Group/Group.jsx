@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import URL from '../Chunks/URL';
+import React, { useEffect } from 'react';
 import styles from '../../Styles/Home.module.css';
-import Swal from 'sweetalert2';
 import ChatBox from './ChatBox';
-import Model from '../Chunks/Model'
+import Model from '../Chunks/Model';
+import { useGroup } from '../../Context/GroupContext';
+
 const Group = () => {
-  const [startGroupChat, setStartGroupChat] = useState(null);
-  const [groupData, setGroupsData] = useState({
-    findGroup: [],
-    findUserInGroup: []
-  });
+  const { getGroupInfo, getGroups, groupData, startGroupChat } = useGroup();
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -22,37 +17,13 @@ const Group = () => {
     }
   }, []);
 
-  async function getGroups(userId) {
-    try {
-      const response = await axios.get(`${URL.Endpoint}/groups/${userId}`);
-      setGroupsData(response.data.data);
-    } catch (error) {
-      console.error('Error fetching groups:', error.message);
-    }
-  }
-
-
-  const getGroupInfo = async (id) => {
-    try {
-      const res = await axios.post(`${URL.Endpoint}/group/info`, { id });
-      setStartGroupChat(res.data.findGroup);
-    } catch (error) {
-      Swal.fire({
-        title: 'Oops! Something went wrong',
-        icon: 'warning',
-        confirmButtonText: 'Okay'
-      })
-      console.error('Error fetching user info:', error);
-    }
-  };
-
   return (
     <>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-4 col-12">
+          {/* Sidebar: Hidden on smaller screens */}
+          <div className="d-none d-md-block col-md-4 col-12">
             <Model />
-
             {groupData?.findGroup?.length > 0 || groupData?.findUserInGroup?.length > 0 ? (
               <>
                 <div className={styles.inlineContent}></div>
@@ -62,11 +33,7 @@ const Group = () => {
                   {groupData.findGroup.map((user) => (
                     <li key={user._id} className={styles.userItem} onClick={() => getGroupInfo(user._id)}>
                       <div className={styles.userInfo}>
-                        <img
-                          src={user.image}
-                          alt={user.name}
-                          className={styles.userImage}
-                        />
+                        <img src={user.image} alt={user.name} className={styles.userImage} />
                         <div className={styles.userDetails}>
                           <span className={styles.userName}>{user.name}</span>
                         </div>
@@ -76,11 +43,7 @@ const Group = () => {
                   {groupData.findUserInGroup.map((group) => (
                     <li key={group._id} className={styles.userItem} onClick={() => getGroupInfo(group._id)}>
                       <div className={styles.userInfo}>
-                        <img
-                          src={group.image}
-                          alt={group.name}
-                          className={styles.userImage}
-                        />
+                        <img src={group.image} alt={group.name} className={styles.userImage} />
                         <div className={styles.userDetails}>
                           <span className={styles.userName}>{group.name}</span>
                         </div>
@@ -93,19 +56,13 @@ const Group = () => {
               <p>No Groups found.</p>
             )}
           </div>
+
+          {/* ChatBox: Always visible */}
           <div className="col-md-8 col-12">
             {startGroupChat && <ChatBox chatUser={startGroupChat} />}
-
           </div>
-
-
         </div>
-
-
       </div>
-
-
-
     </>
   );
 };

@@ -8,6 +8,7 @@ import { Icon, Box, Toast } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa";
 import TableModel from './TableModel'
 import EditModel from '../Chunks/EditModel'
+
 import {
     Button,
     Image,
@@ -51,10 +52,10 @@ const MyTable = ({ update }) => {
     const DeleteGroup = async (id) => {
         const res = await axios.delete(`${URL.Endpoint}/group/delete/${id}`);
         if (res.data.success) {
-            Toast.success(res.data.message);
+            toast.success(res.data.message);
             fetchGroups();
         } else {
-            Toast.error(res.data.message);
+            toast.error(res.data.message);
         }
     }
 
@@ -64,6 +65,8 @@ const MyTable = ({ update }) => {
             toast.success("Link Copied Successfully");
             
         } catch (error) {
+     
+     
             toast.error(error.response.data.message);
             
         }

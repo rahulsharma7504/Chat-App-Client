@@ -3,13 +3,19 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel, Box, Icon } from "@chakra-ui/r
 import { FaUsers, FaUserFriends } from "react-icons/fa";
 import Home from './Home';
 import Groups from './Groups';
-
+import { useTabContext } from '../../Context/TabsContext';
 const Tabspanel = () => {
+  const { activeTab, setActiveTab } = useTabContext();
+
+
+  const handleTabChange = (index) => {
+    setActiveTab(index === 0 ? 'user' : 'group');
+  };
   return (
     <>
 
       <Box mx="auto" mt={8} p={4} borderWidth={1} borderRadius="lg" boxShadow="lg">
-        <Tabs variant="soft-rounded" colorScheme="purple">
+        <Tabs variant="soft-rounded" colorScheme="purple"  index={activeTab === 'user' ? 0 : 1} onChange={handleTabChange}>
           <TabList>
             <Tab>
               <Icon as={FaUsers} mr={2} />

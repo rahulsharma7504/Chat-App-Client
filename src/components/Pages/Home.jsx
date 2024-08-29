@@ -4,19 +4,18 @@ import { io } from 'socket.io-client';
 import styles from '../../Styles/Home.module.css';
 import Swal from 'sweetalert2';
 import moment from 'moment';
+import { useChat } from '../../Context/ChatUser';
 
 const ENDPOINT = "http://localhost:4000";
-const API_USERS_URL = `${ENDPOINT}/api/users`;
+// const API_USERS_URL = `${ENDPOINT}/api/users`;
 const API_USER_INFO_URL = `${ENDPOINT}/api/user/info`;
 
 const Home = () => {
+  const { chatUser, getAllUsers, getUserInfo, messages, setMessages, usersData } = useChat()
   const containerRef = useRef(null);
-  const [usersData, setUsersData] = useState([]);
-  const [chatUser, setChatUser] = useState(null);
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [chatMessage, setChatMessage] = useState('');
-  const [messages, setMessages] = useState([]);
   const [oldMessages, setOldMessages] = useState([]);
 
   var socketInstance = null;
@@ -39,7 +38,7 @@ const Home = () => {
 
       socketInstance.on('receiveMessage', (msg) => {
         setMessages(prev => [...prev, { sender: 'receiver', content: msg.message, timestamp: new Date() }]);
-      }); 
+      });
 
       setSocket(socketInstance);
 
@@ -77,7 +76,7 @@ const Home = () => {
   }, [chatUser, socket]);
 
 
-  
+
   const handleMessageUpdate = useCallback(async (id, message) => {
     try {
       const res = await axios.post(`${ENDPOINT}/api/updatemessage`, { id, message });
@@ -123,38 +122,11 @@ const Home = () => {
     }
   };
 
-  const getAllUsers = async () => {
-    try {
-      if (user && user._id) {
-        const res = await axios.post(API_USERS_URL, { id: user._id });
-        setUsersData(res.data);
-      } else {
-        console.error('User ID not found in local storage.');
-      }
-    } catch (error) {
-      Swal.fire({
-        title: 'Oops! Something went wrong',
-        icon: 'warning',
-        confirmButtonText: 'Okay'
-      })
-      console.error('Error fetching users:', error);
-    }
-  };
 
-  const getUserInfo = async (id) => {
-    try {
-      const res = await axios.post(API_USER_INFO_URL, { id });
-      setChatUser(res.data);
-      setMessages([]);  // Reset messages when changing chat user
-    } catch (error) {
-      Swal.fire({
-        title: 'Oops! Something went wrong',
-        icon: 'warning',
-        confirmButtonText: 'Okay'
-      })
-      console.error('Error fetching user info:', error);
-    }
-  };
+
+
+
+
 
   // Ensure the chat container scrolls to the bottom when messages or oldMessages change
   useEffect(() => {
@@ -172,18 +144,17 @@ const Home = () => {
 
   // Logout functionality
 
-  
+
   return (
     <>
       <div>
       </div>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-4 col-12">
+          <div className={`col-md-4 col-12 d-none d-md-block`}>
             {usersData.length > 0 ? (
               <>
-                <div className={styles.inlineContent}>
-                </div>
+                <div className={styles.inlineContent}></div>
                 <hr />
                 <ul className={styles.userList}>
                   <hr className={styles.verticalLine} />
@@ -235,15 +206,12 @@ const Home = () => {
                       width: '300px',
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        // Handle the Delete action
-                        handleMessageDelete(msg._id)
-
+                        handleMessageDelete(msg._id);
                       } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        //Handle the Cancel action
                         Swal.fire({
                           title: 'Edit Message',
                           input: 'text',  // Use 'textarea' for multi-line input
-                          inputValue: msg.message,  // Pre-fill the input with the current message
+                          inputValue: msg.message,
                           showCancelButton: true,
                           confirmButtonColor: '#3085d6',
                           cancelButtonColor: '#d33',
@@ -260,14 +228,11 @@ const Home = () => {
                         }).then((result) => {
                           if (result.isConfirmed) {
                             const updatedMessage = result.value;  // The updated message from the input field
-                            handleMessageUpdate(msg._id, updatedMessage);  // Call your function to handle the update
+                            handleMessageUpdate(msg._id, updatedMessage);
                           }
                         });
-
-                        // handleMessageUpdate(msg._id)
                       }
-                    })
-                    }>
+                    })}>
                       <div className={styles.messageContent}>
                         <img
                           src={msg.receiverId === user._id ? chatUser.image : user.image}
@@ -282,7 +247,7 @@ const Home = () => {
                   ))}
 
                   {messages.map((msg, index) => (
-                    <div key={index} className={msg.sender === 'sender' ? styles.senderMessage : styles.receiverMessage}  onDoubleClick={() => Swal.fire({
+                    <div key={index} className={msg.sender === 'sender' ? styles.senderMessage : styles.receiverMessage} onDoubleClick={() => Swal.fire({
                       title: 'Choose an action',
                       icon: 'info',
                       showCancelButton: true,
@@ -296,15 +261,12 @@ const Home = () => {
                       width: '300px',
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        // Handle the Delete action
-                        handleMessageDelete(msg._id)
-
+                        handleMessageDelete(msg._id);
                       } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        //Handle the Cancel action
                         Swal.fire({
                           title: 'Edit Message',
                           input: 'text',  // Use 'textarea' for multi-line input
-                          inputValue: msg.content,  // Pre-fill the input with the current message
+                          inputValue: msg.content,
                           showCancelButton: true,
                           confirmButtonColor: '#3085d6',
                           cancelButtonColor: '#d33',
@@ -321,14 +283,11 @@ const Home = () => {
                         }).then((result) => {
                           if (result.isConfirmed) {
                             const updatedMessage = result.value;  // The updated message from the input field
-                            handleMessageUpdate(msg._id, updatedMessage);  // Call your function to handle the update
+                            handleMessageUpdate(msg._id, updatedMessage);
                           }
                         });
-
-                        // handleMessageUpdate(msg._id)
                       }
-                    })
-                    }>
+                    })}>
                       <div className={styles.messageContent}>
                         <img
                           src={msg.sender === 'sender' ? user.image : chatUser.image}
@@ -338,11 +297,9 @@ const Home = () => {
                         />
                         <p>{msg.content}</p>
                         <small>{msg.timestamp.toLocaleTimeString()}</small>
-
                       </div>
                     </div>
                   ))}
-
                 </div>
                 <div className={styles.chatFooter}>
                   <div className={styles.messageInputContainer}>
@@ -366,6 +323,7 @@ const Home = () => {
           )}
         </div>
       </div>
+
     </>
   );
 };

@@ -1,58 +1,97 @@
 .drawer {
   position: fixed;
   top: 60px; /* Adjust based on navbar height */
-  left: -250px; /* Hidden by default */
-  width: 250px;
+  left: -270px; /* Hidden by default */
+  width: 270px;
   height: 100%;
   background-color: #333;
+  overflow-y: auto;
   overflow-x: hidden;
   transition: 0.3s;
   z-index: 999; /* Ensures sidebar stays below navbar */
+  color: #f10707;
+  padding: 15px; /* Add some padding for inner content */
 }
 
+/* Drawer open state */
 .drawer.open {
   left: 0; /* Slide in from the left when open */
 }
 
-.drawer .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
+/* Sidebar link hover effect */
 .drawer a:hover {
   color: #f1f1f1;
 }
-.drawer {
-  color: #f10707;
-}
 
-
-.drawer .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
+/* Main content transitions */
 .main-content {
   transition: margin-left 0.3s;
   margin-left: 0; /* Default margin when sidebar is closed */
 }
 
 .main-content.shift {
-  margin-left: 250px; /* Shift content when sidebar is open */
+  margin-left: 270px; /* Shift to accommodate the open drawer */
 }
 
-.main-content {
-  margin-left: 10px;
-  padding: 16px;
-  transition: margin-left 0.3s;
+/* User List and Item styling */
+.user-item,
+.group-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #444;
+  border-radius: 5px;
+  transition: background-color 0.2s;
 }
 
-.main-content.shift {
-  margin-left: 260px; /* Shift to accommodate the open drawer */
+.user-item:hover,
+.group-item:hover {
+  background-color: #555;
 }
 
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info,
+.group-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name,
+.group-name {
+  color: white;
+  font-weight: bold;
+}
+
+.user-status {
+  color: green;
+  font-size: 0.8em;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .drawer {
+    width: 200px; /* Adjust width for smaller screens */
+  }
+
+  .main-content.shift {
+    margin-left: 200px; /* Adjust shift for smaller screens */
+  }
+
+  .user-item,
+  .group-item {
+    padding: 8px;
+  }
+
+  .user-name,
+  .group-name {
+    font-size: 0.9em;
+  }
+}
